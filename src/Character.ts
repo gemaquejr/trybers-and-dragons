@@ -1,11 +1,11 @@
 import Archetype, { Mage } from './Archetypes/index';
 import Energy from './Energy';
 import Fighter from './Fighter/Fighter';
+import SimpleFighter from './Fighter/SimpleFighter';
 import Race, { Elf } from './Races/index';
 import getRandomInt from './utils';
 
 class Character implements Fighter {
-  private _name: string;
   private _race: Race;
   private _archetype: Archetype;
   private _maxLifePoints: number;
@@ -14,9 +14,10 @@ class Character implements Fighter {
   private _defense: number;
   private _dexterity: number;
   private _energy: Energy;
+  name: string;
 
   constructor(name: string) {
-    this._name = name;
+    this.name = name;
     this._dexterity = getRandomInt(1, 10);
     this._race = new Elf(name, this._dexterity);
     this._archetype = new Mage(name);
@@ -30,19 +31,15 @@ class Character implements Fighter {
     };
   }
 
-  public get name(): string {
-    return this._name;
-  }
-
-  public get dexterity(): number {
+  get dexterity(): number {
     return this._dexterity;
   }
 
-  public get race(): Race {
+  get race(): Race {
     return this._race;
   }
 
-  public get archetype(): Archetype {
+  get archetype(): Archetype {
     return this._archetype;
   }
 
@@ -50,30 +47,32 @@ class Character implements Fighter {
     return this._maxLifePoints;
   }
 
-  public get lifePoints(): number {
+  get lifePoints(): number {
     return this._lifePoints;
   }
 
-  public get strength(): number {
+  get strength(): number {
     return this._strength;
   }
 
-  public get defense(): number {
+  get defense(): number {
     return this._defense;
   }
 
-  public get energy(): Energy {
-    return {
+  get energy(): Energy {
+    const obj = {
       type_: this._energy.type_,
       amount: this._energy.amount,
     };
+    return obj
   }
 
   receiveDamage(attackPoints: number): number {
     const damage = attackPoints - this._defense;
 
     if (damage > 0) {
-      this._lifePoints -= damage;
+      const newlif = this._lifePoints - damage;
+      this._lifePoints = newlif;
     }
 
     if (this._lifePoints <= 0) {
@@ -83,7 +82,7 @@ class Character implements Fighter {
     return this._lifePoints;
   }
 
-  attack(enemy: Fighter): void {
+  attack(enemy: SimpleFighter): void {
     enemy.receiveDamage(this._strength);
   }
 
