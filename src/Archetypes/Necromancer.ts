@@ -3,21 +3,21 @@ import { EnergyType } from '../Energy';
 
 class Necromancer extends Archetype {
   private _energyType: EnergyType;
-  private static _createdArchetypeInstances = 0;
+  static numinstacia = 0;
   
   constructor(name: string) {
     super(name);  
     this._energyType = 'mana';
-    Necromancer._createdArchetypeInstances += 1;
+    Necromancer.numinstacia += 1;
   }
    
-  static createdArchetypeInstances(): number {
-    return Necromancer._createdArchetypeInstances;
-  }
-  
-  public get energyType(): EnergyType {
+  get energyType(): EnergyType {
     return this._energyType;
   }
+
+  static createdArchetypeInstances(): number {
+    return Necromancer.numinstacia;
+  }  
 }
   
 export default Necromancer;
