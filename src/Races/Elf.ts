@@ -2,20 +2,20 @@ import Race from './Race';
 
 class Elf extends Race {
   private _maxLifePoints: number;
-  private static _createdRacesInstances = 0;
+  static numinstacia = 0;
   
   constructor(name: string, dexterity: number) {
     super(name, dexterity);  
     this._maxLifePoints = 99;
-    Elf._createdRacesInstances += 1;
-  }
-   
-  static createdRacesInstances(): number {
-    return Elf._createdRacesInstances;
+    Elf.numinstacia += 1;
   }
   
   public get maxLifePoints(): number {
     return this._maxLifePoints;
+  }
+   
+  static createdRacesInstances(): number {
+    return Elf.numinstacia;
   }
 }
   
