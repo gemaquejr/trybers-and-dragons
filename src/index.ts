@@ -23,11 +23,12 @@ export const runBattles = (battles: Battle[]) => {
   });
 };
 
-export { player1,
-  player2,
-  player3,
-  monster1,
-  monster2,
-  pvp,
-  pve,
+export {
+    player1,
+    player2,
+    player3,
+    monster1,
+    monster2,
+    pvp,
+    pve,
 };
