@@ -3,21 +3,21 @@ import { EnergyType } from '../Energy';
 
 class Ranger extends Archetype {
   private _energyType: EnergyType;
-  private static _createdArchetypeInstances = 0;
+  private static numinstacia = 0;
   
   constructor(name: string) {
     super(name);  
     this._energyType = 'stamina';
-    Ranger._createdArchetypeInstances += 1;
+    Ranger.numinstacia += 1;
   }
    
-  static createdArchetypeInstances(): number {
-    return Ranger._createdArchetypeInstances;
-  }
-  
   public get energyType(): EnergyType {
     return this._energyType;
   }
+
+  static createdArchetypeInstances(): number {
+    return Ranger.numinstacia;
+  }  
 }
   
 export default Ranger;
