@@ -10,7 +10,7 @@ class Elf extends Race {
     Elf.numinstacia += 1;
   }
   
-  public get maxLifePoints(): number {
+  get maxLifePoints(): number {
     return this._maxLifePoints;
   }
    

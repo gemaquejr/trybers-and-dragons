@@ -10,7 +10,7 @@ class Dwarf extends Race {
     Dwarf.numinstacia += 1;
   }
   
-  public get maxLifePoints(): number {
+  get maxLifePoints(): number {
     return this._maxLifePoints;
   }
    
